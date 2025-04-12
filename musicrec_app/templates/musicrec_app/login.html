@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" href="{% static 'musicrec_app/images/favicon.ico' %}" type="image/x-icon">
+    <!---Using the Poppins font & FontAwesome for icons-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link rel="stylesheet" href="{% static 'musicrec_app/login.css' %}">
+    
+</head>
+<body>
+
+    <div class="logo">🎵 AlgoRhythm</div> 
+
+    <div class="user_card">
+        <h3 id="form-title">Login</h3>
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" name="username" placeholder="Username" class="input_user" required>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                <input type="password" name="password" placeholder="Password" class="input_pass" required>
+            </div>
+
+            <button type="submit" class="login_btn">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+    </div>
+
+</body>
+</html>

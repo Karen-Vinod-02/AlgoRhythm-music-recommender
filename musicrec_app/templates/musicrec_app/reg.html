@@ -1,0 +1,44 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="icon" href="{% static 'musicrec_app/images/favicon.ico' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'musicrec_app/reg.css' %}">
+</head>
+<body>
+    <div class="logo">🎵 AlgoRhythm</div>
+    <div class="container">
+        <h2 class="form-title">Create Your Account</h2>
+
+        {% if form.errors %}
+            <div class="error-messages">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            
+            <input type="text" class="input-field" name="username" placeholder="Username" required value="{{ form.username.value|default_if_none:'' }}">
+            <input type="text" class="input-field" name="email" placeholder="Email" required>
+            <input type="password" class="input-field" name="password1" placeholder="Password" required>
+            <input type="password" class="input-field" name="password2" placeholder="Confirm Password" required>
+
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+        
+        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+    <script src="{% static 'musicrec_app/js/reg.js' %}"></script>
+</body>
+</html>
